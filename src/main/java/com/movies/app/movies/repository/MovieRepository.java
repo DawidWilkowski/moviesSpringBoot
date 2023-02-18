@@ -6,4 +6,6 @@ import com.movies.app.movies.entity.Movie;
 
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
+	Movie findByTitle(String title);
+
 }

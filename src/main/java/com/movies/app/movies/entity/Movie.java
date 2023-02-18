@@ -13,14 +13,15 @@ public class Movie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
+	private Integer length;
 
 	public Movie() {
 	}
 
-	public Movie(Long id, String title) {
-		super();
+	public Movie(Long id, String title, Integer length) {
 		this.id = id;
 		this.title = title;
+		this.length = length;
 	}
 
 	public Long getId() {
@@ -37,6 +38,14 @@ public class Movie {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Integer getLength() {
+		return length;
+	}
+
+	public void setLength(Integer length) {
+		this.length = length;
 	}
 
 }
