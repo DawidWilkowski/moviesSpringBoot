@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.movies.app.movies.entity.Movie;
 import com.movies.app.movies.repository.MovieRepository;
@@ -28,9 +27,6 @@ public class MoviesControllerTest {
 
 	@Autowired
 	MockMvc mockMvc;
-
-	@Autowired
-	ObjectMapper mapper;
 
 	@Autowired
 	MovieRepository movieRepository;
