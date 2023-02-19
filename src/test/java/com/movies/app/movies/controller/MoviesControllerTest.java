@@ -1,5 +1,6 @@
 package com.movies.app.movies.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -46,6 +47,11 @@ public class MoviesControllerTest {
 	public void getMovieByIdTest() throws Exception {
 		mockMvc.perform(get("/movies/{id}", 1)).andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
 
+	}
+
+	@Test
+	public void deleteMovieByIdTest() throws Exception {
+		mockMvc.perform(delete("/movies/{id}", 1)).andExpect(status().isOk());
 	}
 
 	@Test
