@@ -26,8 +26,9 @@ public class MoviesController {
 	 * Returns list of movies from database.
 	 */
 	@GetMapping(value = "/movies")
-	public List<Movie> getAllMovies() {
-		return movieRepository.findAll();
+	public ResponseEntity<List<Movie>> getAllMovies() {
+		return new ResponseEntity<List<Movie>>(movieRepository.findAll(), HttpStatus.OK);
+
 	}
 
 	/**

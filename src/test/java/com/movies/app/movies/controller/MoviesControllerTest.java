@@ -35,7 +35,7 @@ public class MoviesControllerTest {
 	public void getAllMoviesTest() throws Exception {
 		mockMvc.perform(get("/movies")).andExpect(status().isOk())
 				.andExpect(jsonPath("$[0].title").value("Fast and Furious 6"))
-				.andExpect(jsonPath("$[1].title").value("Avatar 2"))
+				.andExpect(jsonPath("$[1].title").value("Avatar"))
 				.andExpect(jsonPath("$[2].title").value("Shawshank Redemption"));
 	}
 
