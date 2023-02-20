@@ -1,8 +1,10 @@
-INSERT INTO movies (id,title,length) 
+INSERT INTO movies (id,title,length,image) 
 VALUES
-(DEFAULT,'Fast and Furious 6',110),
-(DEFAULT,'Avatar 2',142),
-(DEFAULT,'Shawshank Redemption',164);
+(DEFAULT,'Fast and Furious 6',110, 'fast.png'),
+(DEFAULT,'Avatar',142,'avatar.png'),
+(DEFAULT,'Shawshank Redemption',164,'shawshank.png'),
+(DEFAULT,'Moonlight',120,'moonlight.png');
+
 
 INSERT INTO users (id,userName)
 VALUES

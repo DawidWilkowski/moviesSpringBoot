@@ -20,5 +20,6 @@ public class Movie {
 	private Long id;
 	private String title;
 	private Integer length;
+	private String image;
 
 }

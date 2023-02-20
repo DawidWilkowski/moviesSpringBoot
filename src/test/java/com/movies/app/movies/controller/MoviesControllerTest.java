@@ -52,7 +52,7 @@ public class MoviesControllerTest {
 
 	@Test
 	public void createMovieTest() throws Exception {
-		Movie movie = new Movie(null, "Test", 100);
+		Movie movie = new Movie(null, "Test", 100, "test.png");
 		Gson gson = new Gson();
 		String jsonInString = gson.toJson(movie);
 		System.out.println(jsonInString);
