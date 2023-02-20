@@ -84,7 +84,10 @@ public class MoviesController {
 
 	@GetMapping("/moviesUI")
 	String movies(Model model) {
-		model.addAttribute("listMovies", movieRepository.findAll());
+		List<Movie> listOfMovies = movieRepository.findAll();
+		model.addAttribute("firstMovie", listOfMovies.get(0));
+		listOfMovies.remove(0);
+		model.addAttribute("listMovies", listOfMovies);
 		return "movies";
 	}
 }
