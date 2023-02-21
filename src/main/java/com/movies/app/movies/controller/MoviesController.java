@@ -102,4 +102,8 @@ public class MoviesController {
 		return "moviePage";
 	}
 
+	@GetMapping("/admin")
+	String admin(Model model) {
+		return "admin";
+	}
 }

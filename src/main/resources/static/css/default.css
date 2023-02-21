@@ -12,6 +12,11 @@ background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
 	border: none;
 	
 }
+.card-admin {
+	margin: 0 2em;
+	border: none;
+	
+}
 
 .carousel-control-prev, .carousel-control-next {
 	background-color: #e1e1e1;
