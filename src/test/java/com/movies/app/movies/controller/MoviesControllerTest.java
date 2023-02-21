@@ -35,8 +35,7 @@ public class MoviesControllerTest {
 	public void getAllMoviesTest() throws Exception {
 		mockMvc.perform(get("/movies")).andExpect(status().isOk())
 				.andExpect(jsonPath("$[0].title").value("Fast and Furious 6"))
-				.andExpect(jsonPath("$[1].title").value("Avatar"))
-				.andExpect(jsonPath("$[2].title").value("Shawshank Redemption"));
+				.andExpect(jsonPath("$[1].title").value("Avatar")).andExpect(jsonPath("$[2].title").value("Shawshank"));
 	}
 
 	@Test
@@ -52,7 +51,7 @@ public class MoviesControllerTest {
 
 	@Test
 	public void createMovieTest() throws Exception {
-		Movie movie = new Movie(null, "Test", 100, "test.png", "test desc");
+		Movie movie = new Movie(null, "Test", 100, "test.png", "test desc", "testLink");
 		Gson gson = new Gson();
 		String jsonInString = gson.toJson(movie);
 		System.out.println(jsonInString);
