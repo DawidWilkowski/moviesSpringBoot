@@ -14,23 +14,39 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <link href="../static/css/default.css" th:href="@{/css/default.css}"
 	rel="stylesheet" />
-	<script type="text/javascript" th:src="@{/js/action.js}"></script>
+<script type="text/javascript" th:src="@{/js/action.js}"></script>
 </head>
 <body>
-<div id="masthead">  
-  <div class="container">
-      <div class="row">
-        <div class="col-md-7">
-          <h1>Moviefy 
-          </h1>
-            <p class="lead">Unlimited movies, TV shows, and more.</p>
-        </div>
-        
-      </div> 
-  </div>
-</div>
-<h5 class="card-title" th:text="${movie.title}"></h5>
+	<div id="masthead">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<h1>Moviefy</h1>
+					<p class="lead">Unlimited movies, TV shows, and more.</p>
+				</div>
 
+			</div>
+		</div>
+	</div>
+
+	<div id="wrapper"
+		style="display: flex; flex-direction: column; align-items: center;">
+		<div class="item">
+			<h5 class="display-2" th:text="${movie.title}"></h5>
+		</div>
+		<div class="item">
+			<a th:text="${movie.description}"></a>
+		</div>
+		<div class="item">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" width="816" height="459"
+					th:src="${movie.link}" allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="item" >
+		 <a th:href="@{/moviesUI}" class="btn btn-dark btn-lg"> Back</a>
+		</div>
+	</div>
 
 </body>
 </html>

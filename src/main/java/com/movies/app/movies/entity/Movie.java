@@ -22,5 +22,6 @@ public class Movie {
 	private Integer length;
 	private String image;
 	private String description;
+	private String link;
 
 }
