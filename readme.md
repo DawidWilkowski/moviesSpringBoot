@@ -32,13 +32,13 @@ Application allows users to watch their favourite movies.
 
 
 Menu:
-![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/images/index.png)
+![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/src/main/resources/static/images/githubReadme/index.png)
 
 Movies selection:
-![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/images/movies.png)
+![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/src/main/resources/static/images/githubReadme/movies.png)
 
 Selected movie:
-![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/images/singleMovie.png)
+![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/src/main/resources/static/images/githubReadme/singleMovie.png)
 
 Admin:
-![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/images/admin.png)
+![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/src/main/resources/static/images/githubReadme/admin.png)
