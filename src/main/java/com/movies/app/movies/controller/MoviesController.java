@@ -81,10 +81,17 @@ public class MoviesController {
 		}
 	}
 
+	/**
+	 * Returns main page view.
+	 */
 	@GetMapping("/")
 	String index(Model model) {
 		return "index";
 	}
+
+	/**
+	 * Returns view for user view.
+	 */
 
 	@GetMapping("/moviesUI")
 	String moviesUI(Model model) {
@@ -95,6 +102,11 @@ public class MoviesController {
 		return "movies";
 	}
 
+	/**
+	 * Returns view for chosen movie.
+	 * 
+	 * @param id
+	 */
 	@GetMapping("/moviesUI/")
 	String viewMovie(Model model, @RequestParam Long id) {
 		Movie movie = movieRepository.findById(id).orElseThrow();
@@ -102,6 +114,9 @@ public class MoviesController {
 		return "moviePage";
 	}
 
+	/**
+	 * Returns view for admin page.
+	 */
 	@GetMapping("/admin")
 	String admin(Model model) {
 		return "admin";

@@ -1,10 +1,13 @@
 package com.movies.app.movies.controller;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.util.LinkedMultiValueMap;
 
 import com.google.gson.Gson;
 import com.movies.app.movies.entity.Movie;
@@ -59,9 +63,17 @@ public class MoviesControllerTest {
 				.andExpect(status().isOk());
 	}
 
-//	@Test
-//	public void testListMovies() {
-//		List<Movie> movies = (List<Movie>) movieRepository.findAll();
-//		assertThat(movies).size().isGreaterThan(3);
-//	}
+	@Test
+	public void testViews() throws Exception {
+		mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("index"));
+		mockMvc.perform(get("/admin")).andExpect(status().isOk()).andExpect(view().name("admin"));
+		mockMvc.perform(get("/moviesUI")).andExpect(status().isOk()).andExpect(view().name("movies"))
+				.andExpect(content().string(containsString("Avatar")));
+
+		LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
+		requestParams.add("id", "1");
+		mockMvc.perform(get("/moviesUI/").params(requestParams)).andExpect(status().isOk())
+				.andExpect(view().name("moviePage")).andExpect(content().string(containsString("Fast and Furious 6")));
+	}
+
 }
