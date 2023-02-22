@@ -31,10 +31,10 @@ Application allows users to watch their favourite movies.
 ## Screenshots
 
 Movies selection:
-![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/src/main/resources/static/images/githubReadme/movies.png)
+![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/images/movies.png)
 
 Selected movie:
-![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/src/main/resources/static/images/githubReadme/singleMovie.png)
+![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/images/singleMovie.png)
 
 Admin:
-![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/src/main/resources/static/images/githubReadme/admin.png)
+![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/images/admin.png)
