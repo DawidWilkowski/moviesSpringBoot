@@ -16,7 +16,8 @@
 	rel="stylesheet" />
 <script type="text/javascript" th:src="@{/js/action.js}"></script>
 </head>
-<body>
+
+<body style="background: linear-gradient(to right, #ad5389, #3c1053);">
 	<div id="masthead">
 		<div class="container">
 			<div class="row">
@@ -43,14 +44,14 @@
 					th:src="${movie.link}" allowfullscreen></iframe>
 			</div>
 		</div>
-	
+
 	</div>
-<div class="card-admin mb-4 border-0"
+	<div class="card-admin mb-4 border-0"
 		style="background-color: transparent; position: absolute; bottom: 0; left: 0;">
 		<div class="btn-group hover-effect" data-toggle="tooltip"
 			data-placement="top" title="Back">
-			<a th:href="@{/moviesUI}"> <img th:src="@{/images/back.png}" alt="logo"
-				width="75" />
+			<a th:href="@{/moviesUI}"> <img th:src="@{/images/back.png}"
+				alt="logo" width="75" />
 			</a>
 		</div>
 

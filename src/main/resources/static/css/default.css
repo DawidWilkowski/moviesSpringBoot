@@ -1,7 +1,4 @@
-body{
-background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
 
-}
 .carousel-inner {
 	padding: 1.5em;
 }
@@ -53,12 +50,12 @@ background-image: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
 }
 
 #wrapper{
-		color:#424957;
+		color:black;
 		font-weight: 700;
 }
 #masthead {
 	min-height:150px;
-		color:#424957;
+		color:black;
 }
 
 #masthead h1 {
