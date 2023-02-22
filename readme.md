@@ -30,10 +30,6 @@ Application allows users to watch their favourite movies.
 
 ## Screenshots
 
-
-Menu:
-![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/src/main/resources/static/images/githubReadme/index.png)
-
 Movies selection:
 ![](https://github.com/DawidWilkowski/moviesSpringBoot/blob/master/src/main/resources/static/images/githubReadme/movies.png)
 
