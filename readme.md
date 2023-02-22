@@ -1,4 +1,4 @@
-# Library
+# Moviefy
 
 Web application for streaming service.
 
