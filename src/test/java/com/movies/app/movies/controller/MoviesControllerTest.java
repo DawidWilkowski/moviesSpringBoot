@@ -67,6 +67,7 @@ public class MoviesControllerTest {
 	public void testViews() throws Exception {
 		mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("index"));
 		mockMvc.perform(get("/admin")).andExpect(status().isOk()).andExpect(view().name("admin"));
+		mockMvc.perform(get("/addMovie")).andExpect(status().isOk()).andExpect(view().name("addMovie"));
 		mockMvc.perform(get("/moviesUI")).andExpect(status().isOk()).andExpect(view().name("movies"))
 				.andExpect(content().string(containsString("Avatar")));
 

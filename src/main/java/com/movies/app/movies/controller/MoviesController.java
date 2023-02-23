@@ -1,5 +1,10 @@
 package com.movies.app.movies.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +12,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.movies.app.movies.entity.Movie;
 import com.movies.app.movies.repository.MovieRepository;
@@ -21,10 +27,11 @@ import com.movies.app.movies.repository.MovieRepository;
 @Controller
 public class MoviesController {
 
+	private final String UPLOAD_DIR_IMAGE = "src/main/resources/static/images/poster/";
+	private final String UPLOAD_DIR_MOVIE = "src/main/resources/static/movies/";
+
 	@Autowired
 	private MovieRepository movieRepository;
-
-	private RestTemplate restTemplate;
 
 	/**
 	 * Returns list of movies from database.
@@ -81,6 +88,33 @@ public class MoviesController {
 		}
 	}
 
+	@PostMapping(value = "/newMovieFromForm")
+	public ResponseEntity<String> addNewMovieFromForm(@RequestParam("title") String title,
+			@RequestParam("length") int length, @RequestParam("description") String descrpition,
+			@RequestParam("image") MultipartFile imageFile, @RequestParam("movie") MultipartFile movieFile) {
+		Movie movieFound = movieRepository.findByTitle(title);
+		if (movieFound == null) {
+			String imageFileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
+			String movieFileName = StringUtils.cleanPath(movieFile.getOriginalFilename());
+			try {
+				Path pathImage = Paths.get(UPLOAD_DIR_IMAGE + imageFileName);
+				System.out.println(pathImage.toAbsolutePath());
+				Files.copy(imageFile.getInputStream(), pathImage, StandardCopyOption.REPLACE_EXISTING);
+				Path pathMovie = Paths.get(UPLOAD_DIR_MOVIE + movieFileName);
+				Files.copy(movieFile.getInputStream(), pathMovie, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			// movieRepository.save(movie);
+
+			return new ResponseEntity<String>("Succesfully added new movie", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("Movie already exist", HttpStatus.CONFLICT);
+
+		}
+	}
+
 	/**
 	 * Returns main page view.
 	 */
@@ -120,5 +154,14 @@ public class MoviesController {
 	@GetMapping("/admin")
 	String admin(Model model) {
 		return "admin";
+	}
+
+	/**
+	 * Returns view for adding new movie form.
+	 */
+	@GetMapping("/addMovie")
+	String addMovie(Model model) {
+		model.addAttribute("movie", new Movie());
+		return "addMovie";
 	}
 }
