@@ -1,5 +1,6 @@
 package com.movies.app.movies.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,8 +21,10 @@ public class Movie {
 	private Long id;
 	private String title;
 	private Integer length;
-	private String image;
+	@Column(name = "PATHTOIMAGE")
+	private String pathToImage;
 	private String description;
-	private String link;
+	@Column(name = "PATHTOMOVIE")
+	private String pathToMovie;
 
 }

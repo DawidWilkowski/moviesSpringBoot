@@ -28,7 +28,7 @@ import com.movies.app.movies.repository.MovieRepository;
 public class MoviesController {
 
 	private final String UPLOAD_DIR_IMAGE = "src/main/resources/static/images/poster/";
-	private final String UPLOAD_DIR_MOVIE = "src/main/resources/static/movies/";
+	private final String UPLOAD_DIR_MOVIE = "src/main/resources/static/moviesFolder/";
 
 	@Autowired
 	private MovieRepository movieRepository;
@@ -102,6 +102,15 @@ public class MoviesController {
 				Files.copy(imageFile.getInputStream(), pathImage, StandardCopyOption.REPLACE_EXISTING);
 				Path pathMovie = Paths.get(UPLOAD_DIR_MOVIE + movieFileName);
 				Files.copy(movieFile.getInputStream(), pathMovie, StandardCopyOption.REPLACE_EXISTING);
+
+				Movie movie = new Movie();
+				movie.setTitle(title);
+				movie.setLength(length);
+				movie.setDescription(descrpition);
+				movie.setPathToImage(imageFileName);
+				movie.setPathToMovie(movieFileName);
+				movieRepository.save(movie);
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

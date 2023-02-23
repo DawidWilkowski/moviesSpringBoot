@@ -39,10 +39,13 @@
 			<a th:text="${movie.description}"></a>
 		</div>
 		<div class="item">
-			<div class="embed-responsive embed-responsive-16by9">
-				<iframe class="embed-responsive-item" width="816" height="459"
-					th:src="${movie.link}" allowfullscreen></iframe>
-			</div>
+
+			<video width="auto" height="240" controls style=" margin-left: auto; margin-right: auto; display: block;">
+				<source th:src="@{/moviesFolder/{id}(id=${movie.pathToMovie})}"
+					type="video/mp4">
+
+			</video>
+
 		</div>
 
 	</div>
@@ -50,8 +53,8 @@
 		style="background-color: transparent; position: absolute; bottom: 0; left: 0;">
 		<div class="btn-group hover-effect" data-toggle="tooltip"
 			data-placement="top" title="Back">
-			<a th:href="@{/moviesUI}"> <img th:src="@{/images/back.png}"
-				alt="logo" width="75" />
+			<a th:href="@{/moviesUI}"> <img
+				th:src="@{/images/icons/back.png}" alt="logo" width="75" />
 			</a>
 		</div>
 

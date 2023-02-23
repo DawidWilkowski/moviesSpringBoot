@@ -46,7 +46,7 @@
 						<div class="btn-group hover-effect"
 							style="max-width: 100%; max-height: 100%;">
 							<a th:href="@{/moviesUI/(id=${firstMovie.id})}"> <img
-								th:src="@{/images/{i}(i=${firstMovie.image})}"
+								th:src="@{/images/poster/{i}(i=${firstMovie.pathToImage})}"
 								class="d-block w-100" /></a>
 						</div>
 					</div>
@@ -67,7 +67,7 @@
 							style="max-width: 100%; max-height: 100%;">
 
 							<a th:href="@{/moviesUI/(id=${movie.id})}"> <img
-								th:src="@{/images/{i}(i=${movie.image})}" class="d-block w-100" /></a>
+								th:src="@{/images/poster/{i}(i=${movie.pathToImage})}" class="d-block w-100" /></a>
 						</div>
 					</div>
 				</div>
@@ -96,7 +96,7 @@
 		style="background-color: transparent; position: absolute; bottom: 0; left: 0;">
 		<div class="btn-group hover-effect" data-toggle="tooltip"
 			data-placement="top" title="Back">
-			<a th:href="@{/}"> <img th:src="@{/images/back.png}" alt="logo"
+			<a th:href="@{/}"> <img th:src="@{/images/icons/back.png}" alt="logo"
 				width="75" />
 			</a>
 		</div>
