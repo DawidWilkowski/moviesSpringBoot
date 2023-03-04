@@ -18,4 +18,6 @@ public class Admin {
 	private Long id;
 	private String name;
 	private int age;
+	private int test1;
+	private int test;
 }
