@@ -19,6 +19,6 @@ public class Admin {
 	private String pole;
 	private String name;
 	private int age;
-	private int test1;
+	private int test1315;
 	private int test;
 }
