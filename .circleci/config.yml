@@ -27,17 +27,14 @@ jobs:
           name: Test
           command: mvn test
       - run:
-          name: install curl
-          command: sudo apt install curl
+          name: curl deb
+          command: curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
       - run:
           name: install nodejs
           command:  sudo apt-get install -y nodejs
       - run:
           name: install npm
           command:  sudo apt-get install -y npm      
-      - run:
-          name: curl deb
-          command: curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
       - run:
           name: Install Firebase Tools
           command: npm install --prefix=./firebase-deploy firebase-tools
