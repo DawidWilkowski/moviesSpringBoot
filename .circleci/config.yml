@@ -39,12 +39,6 @@ jobs:
           name: cp
           command:  node --version => v18.0.0
       - run:
-          name: install nodejs
-          command:  sudo apt-get install -y nodejs
-      - run:
-          name: install npm
-          command:  sudo apt-get install -y npm      
-      - run:
           name: Install Firebase Tools
           command: npm install --prefix=./firebase-deploy firebase-tools
       - run:
