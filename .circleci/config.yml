@@ -28,7 +28,7 @@ jobs:
           command: mvn test
       - run:
           name: curl deb
-          command: curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
+          command: curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
       - run:
           name: install nodejs
           command:  sudo apt-get install -y nodejs
