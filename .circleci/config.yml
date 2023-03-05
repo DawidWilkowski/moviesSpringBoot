@@ -28,7 +28,7 @@ jobs:
           command: mvn test
       - run:
           name: install npm
-          command: sudo apt-get install npm
+          command: sudo apt-get install -y nodejs
       - run:
           name: Install Firebase Tools
           command: npm install --prefix=./firebase-deploy firebase-tools
