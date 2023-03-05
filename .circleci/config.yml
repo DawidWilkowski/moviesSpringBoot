@@ -26,7 +26,15 @@ jobs:
       - run:
           name: Test
           command: mvn test
-
+      - run:
+          name: install npm
+          command: sudo apt-get install npm
+      - run:
+          name: Install Firebase Tools
+          command: npm install --prefix=./firebase-deploy firebase-tools
+      - run:
+           name: Firebase Deploy
+           command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
