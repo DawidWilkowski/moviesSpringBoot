@@ -28,7 +28,16 @@ jobs:
           command: mvn test
       - run:
           name: curl deb
-          command: curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+          command: sudo curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz 
+      - run:
+          name: tar
+          command:  sudo tar -xvf node-v18.0.0-linux-x64.tar.xz
+      - run:
+          name: cp
+          command: sudo cp -r node-v18.0.0-linux-x64/{bin,include,lib,share} /usr/
+      - run:
+          name: cp
+          command:  node --version => v18.0.0
       - run:
           name: install nodejs
           command:  sudo apt-get install -y nodejs
