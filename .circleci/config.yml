@@ -26,24 +26,6 @@ jobs:
       - run:
           name: Test
           command: mvn test
-      - run:
-          name: curl deb
-          command: sudo curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz 
-      - run:
-          name: tar
-          command:  sudo tar -xvf node-v18.0.0-linux-x64.tar.xz
-      - run:
-          name: cp
-          command: sudo cp -r node-v18.0.0-linux-x64/{bin,include,lib,share} /usr/
-      - run:
-          name: cp
-          command:  node --version => v18.0.0
-      - run:
-          name: Install Firebase Tools
-          command: npm install --prefix=./firebase-deploy firebase-tools
-      - run:
-           name: Firebase Deploy
-           command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
