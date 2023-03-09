@@ -1,0 +1,8 @@
+com\movies\app\movies\controller\UsersController.class
+com\movies\app\movies\exception\UserNotFoundException.class
+com\movies\app\movies\controller\MoviesController.class
+com\movies\app\movies\entity\User.class
+com\movies\app\movies\repository\UserRepository.class
+com\movies\app\movies\MoviesApplication.class
+com\movies\app\movies\repository\MovieRepository.class
+com\movies\app\movies\entity\Movie.class
