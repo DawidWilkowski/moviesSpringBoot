@@ -1,4 +1,4 @@
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/DawidWilkowski/moviesSpringBoot/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/DawidWilkowski/moviesSpringBoot/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/DawidWilkowski/moviesSpringBoot/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/DawidWilkowski/moviesSpringBoot/tree/main)
 # Moviefy
 
 Web application for streaming service.
