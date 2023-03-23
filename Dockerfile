@@ -6,5 +6,6 @@ RUN mvn -f /app/pom.xml clean package
 
 # Run stage
 FROM openjdk:17
-COPY --from=build /app/target/app*.jar /app/app.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/app.jar"]
+COPY --from=build /usr/src/app/target/movies-0.0.1-SNAPSHOT.jar /usr/app/helloworld-1.0.0-SNAPSHOT.jar  
+EXPOSE 8080  
+ENTRYPOINT ["java","-jar","/usr/app/movies-0.0.1-SNAPSHOT.jar"]  
