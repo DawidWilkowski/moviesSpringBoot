@@ -5,6 +5,6 @@ COPY src /app/src
 RUN mvn -f /app/pom.xml clean package
 
 # Run stage
-FROM openjdk:17-jdk-alpine # Use your target JDK here !
+FROM openjdk:17-jdk-alpine
 COPY --from=build /app/target/app*.jar /app/app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/app.jar"]
