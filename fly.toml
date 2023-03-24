@@ -6,7 +6,7 @@ processes = []
 
 [env]
 
-[exprimental]
+[experimental]
   auto_rollback = true
   
 [[services]]
