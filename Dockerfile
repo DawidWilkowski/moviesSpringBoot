@@ -1,5 +1,5 @@
 # Build stage
-FROM maven:3.9.0-eclipse-temurin-17 AS build
+FROM maven:3.8.1-openjdk-17-slim AS build
 COPY src /usr/src/app/src  
 COPY pom.xml /usr/src/app  
 RUN mvn -f /usr/src/app/pom.xml clean package
