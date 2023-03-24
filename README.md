@@ -4,8 +4,6 @@
 
 Web application for streaming service.
 
-Deployed:
-https://movies-spring-boot.fly.dev/
 ## Description
 
 Application allows users to watch their favourite movies.
