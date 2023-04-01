@@ -32,6 +32,10 @@ Application allows users to watch their favourite movies.
 * Lombok
 * Git
 
+### Hosting
+ * Docker
+ * Fly.io
+
 ## Screenshots
 
 Movies selection:
