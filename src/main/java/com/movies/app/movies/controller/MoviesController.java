@@ -27,8 +27,8 @@ import com.movies.app.movies.repository.MovieRepository;
 @Controller
 public class MoviesController {
 
-	private final String UPLOAD_DIR_IMAGE = "src/main/resources/static/images/poster/";
-	private final String UPLOAD_DIR_MOVIE = "src/main/resources/static/moviesFolder/";
+	private final String UPLOAD_DIR_IMAGE = "target/classes/static/images/poster/";
+	private final String UPLOAD_DIR_MOVIE = "target/classes/static/moviesFolder/";
 
 	@Autowired
 	private MovieRepository movieRepository;
@@ -89,9 +89,9 @@ public class MoviesController {
 	}
 
 	@PostMapping(value = "/newMovieFromForm")
-	public ResponseEntity<String> addNewMovieFromForm(@RequestParam("title") String title,
-			@RequestParam("length") int length, @RequestParam("description") String descrpition,
-			@RequestParam("image") MultipartFile imageFile, @RequestParam("movie") MultipartFile movieFile) {
+	public String addNewMovieFromForm(@RequestParam("title") String title, @RequestParam("length") int length,
+			@RequestParam("description") String descrpition, @RequestParam("image") MultipartFile imageFile,
+			@RequestParam("movie") MultipartFile movieFile) {
 		Movie movieFound = movieRepository.findByTitle(title);
 		if (movieFound == null) {
 			String imageFileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
@@ -115,11 +115,9 @@ public class MoviesController {
 				e.printStackTrace();
 			}
 
-			// movieRepository.save(movie);
-
-			return new ResponseEntity<String>("Succesfully added new movie", HttpStatus.OK);
+			return "redirect:/moviesUI";
 		} else {
-			return new ResponseEntity<String>("Movie already exist", HttpStatus.CONFLICT);
+			return "Movie already exist";
 
 		}
 	}
