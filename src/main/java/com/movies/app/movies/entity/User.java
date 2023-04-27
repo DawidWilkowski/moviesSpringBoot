@@ -21,4 +21,9 @@ public class User {
 	private Long id;
 	@Column(name = "USERNAME")
 	private String userName;
+	@Column(name = "USERPASSWORD")
+	private String userPassword;
+	@Column(name = "ACCOUNTTYPE")
+	private String accountType;
+
 }

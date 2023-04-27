@@ -18,4 +18,31 @@ public class UsersController {
 		model.addAttribute("listUsers", userRepository.findAll());
 		return "users";
 	}
+
+//	@GetMapping("/login")
+//	String addMovie(Model model) {
+//		model.addAttribute("user", new User());
+//		return "login";
+//	}
+//
+//	@PostMapping(value = "/loginForm")
+//	public String loginForm(@RequestParam("userName") String userName, @RequestParam("userPassword") String password) {
+//
+//		if (userValidator(userName, password)) {
+//			return "index";
+//		} else {
+//			return "redirect:/login";
+//		}
+//
+//	}
+//
+//	private boolean userValidator(String userName, String password) {
+//		User userToCheck = userRepository.findByUserName(userName); // might be null
+//		if (userToCheck != null) {
+//			if (password == userToCheck.getUserPassword()) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 }

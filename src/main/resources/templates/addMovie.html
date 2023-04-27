@@ -23,12 +23,6 @@
 
 			<form action="#" th:action="@{/newMovieFromForm}" th:object="${movie}"
 				method="POST" enctype="multipart/form-data">
-				<!-- 	private Long id;
-	private String title X;
-	private Integer length X;
-	private String image;
-	private String description X;
-	private String link X; -->
 				<div class="form-group row">
 					<label for="title">Title</label> <input type="text" id="title"
 						th:field="${movie.title}" class="form-control " required>

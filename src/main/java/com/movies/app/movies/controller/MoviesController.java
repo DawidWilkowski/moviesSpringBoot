@@ -125,7 +125,7 @@ public class MoviesController {
 	/**
 	 * Returns main page view.
 	 */
-	@GetMapping("/")
+	@GetMapping("/index")
 	String index(Model model) {
 		return "index";
 	}

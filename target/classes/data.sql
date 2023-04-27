@@ -12,7 +12,7 @@ VALUES
 (DEFAULT,'Moonlight',120,'Test description 10','avatar.mp4','moonlight.png');
 
 
-INSERT INTO users (id,userName)
+INSERT INTO users (id,userName,userPassword,accountType)
 VALUES
-(DEFAULT,'Janusz'),
-(DEFAULT,'Zygmunt');
+(DEFAULT,'dawwil000','password1','user'),
+(DEFAULT,'markat01','testpass','admin');

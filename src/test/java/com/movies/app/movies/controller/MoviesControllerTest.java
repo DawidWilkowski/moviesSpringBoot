@@ -45,7 +45,6 @@ public class MoviesControllerTest {
 	@Test
 	public void getMovieByIdTest() throws Exception {
 		mockMvc.perform(get("/movies/{id}", 1)).andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
-
 	}
 
 	@Test
