@@ -45,6 +45,8 @@ public class SecurityConfig {
 
 		return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> {
 			auth.requestMatchers("/index").permitAll();
+			auth.requestMatchers("/customLogin").permitAll();
+			auth.requestMatchers("/error/**").permitAll();
 			auth.requestMatchers("/login").permitAll();
 			auth.requestMatchers("/login/**").permitAll();
 			auth.requestMatchers("/images/**").permitAll();
