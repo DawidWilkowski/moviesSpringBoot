@@ -23,7 +23,18 @@
 </head>
 <body
 	style="background-image: linear-gradient(to right, #fc5c7d, #6a82fb);">
- <a href="logout">logout</a> 
+	
+	<div class="card-admin mb-4 border-0"
+		style="background-color: transparent; position: absolute; top: 0; left: 0;">
+		<div class="btn-group hover-effect" data-toggle="tooltip"
+			data-placement="top" title="Logout">
+			<a href="logout"> <img th:src="@{/images/icons/logout.svg}" alt="logo"
+				width="75" />
+			</a>
+		</div>
+	</div>
+	
+
 	<div
 		class=" d-flex justify-content-md-center align-items-center vh-100 "
 		style="background-color: transparent;">
@@ -52,7 +63,8 @@
 									<div class="btn-group hover-effect" data-toggle="tooltip"
 										data-placement="top" title="Ban user">
 										<a th:href="@{/moviesUI}"> <img
-											th:src="@{/images/icons/blockUser.png}" alt="logo" width="200" />
+											th:src="@{/images/icons/blockUser.png}" alt="logo"
+											width="200" />
 										</a>
 									</div>
 
@@ -84,8 +96,8 @@
 		style="background-color: transparent; position: absolute; bottom: 0; left: 0;">
 		<div class="btn-group hover-effect" data-toggle="tooltip"
 			data-placement="top" title="Back">
-			<a th:href="@{/index}"> <img th:src="@{/images/icons/back.png}" alt="logo"
-				width="75" />
+			<a th:href="@{/index}"> <img th:src="@{/images/icons/back.png}"
+				alt="logo" width="75" />
 			</a>
 		</div>
 
