@@ -19,6 +19,158 @@
 .hover-effect:hover {
 	opacity: 0.5;
 }
+* {
+	margin: 0px;
+}
+
+body {
+
+	color: white;
+	background-color: #0f0f0f;
+}
+
+.row {
+	margin: 10px 60px;
+}
+
+.row_title {
+	font-size: 1.3rem;
+	font-weight: 600;
+}
+
+.row_posters {
+	display: flex;
+	align-items: center;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	min-height: 215px;
+	transition: 500ms;
+	scroll-behavior: smooth;
+}
+
+.row_posters::-webkit-scrollbar {
+	display: none;
+}
+
+.row_poster {
+	object-fit: contain;
+	height: 100%;
+}
+
+.wrap {
+	display: inline-block;
+	position: relative;
+	height: 300px;
+	width: fit-content;
+	margin: 0 1px;
+	cursor: pointer;
+	transition: height 500ms;
+}
+
+.wrap:hover {
+	opacity: 0.8;
+	transition-delay:300ms;
+	height: 400px;
+
+}
+
+.poster_title {
+	position: absolute;
+	left: 20px;
+	bottom: 20px;
+	color: #f0f0f0;
+
+	opacity: 1;
+	transition: opacity 2000ms 1000ms;
+}
+
+.wrap:hover .poster_title {
+	opacity: 0;
+	transition: opacity 100ms;
+	
+}
+
+.poster_info {
+	position: absolute;
+	left: 5px;
+	bottom: 50px;
+	font-weight: 300;
+	font-size: 0.75rem;
+	width: 250px;
+	text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+	opacity: 0;
+	transition: opacity 100ms;
+}
+
+.wrap:hover .poster_info {
+	opacity: 1;
+	transition: opacity 2000ms;
+}
+
+.poster_info p {
+	padding-top: 5px;
+}
+
+.scroll_button {
+	position: absolute;
+	height: 187px;
+	width: 43px;
+	background-color: #0f0f0f4b;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	cursor: pointer;
+}
+
+.right_arrow {
+	right: 60px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateX(20%);
+	transition: all 500ms;
+}
+
+.left_arrow {
+	left: 60px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateX(-20%);
+	transition: all 500ms;
+}
+
+.row_posters:hover .right_arrow {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0%);
+}
+
+.row_posters:hover .left_arrow {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0%);
+}
+
+.space {
+	min-width: 155px;
+	height: 126px;
+}
+
+.arrow {
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	padding: 3px;
+}
+
+.right {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+
+.left {
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg);
+}
 </style>
 
 </head>
@@ -34,60 +186,43 @@
 			</div>
 		</div>
 	</div>
-    <a href="logout">logout</a> 
-	<div id="carouselExampleControls" class="carousel"
-		data-bs-ride="carousel">
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<div class="card">
-					<div class="img-wrapper">
-						<div class="btn-group hover-effect"
-							style="max-width: 100%; max-height: 100%;">
-							<a th:href="@{/moviesUI/(id=${firstMovie.id})}"> <img
-								th:src="@{/images/poster/{i}(i=${firstMovie.pathToImage})}"
-								class="d-block w-100" /></a>
-						</div>
-					</div>
-				</div>
-				<div class="card-body">
-					<h5 class="card-title" th:text="${firstMovie.title}"></h5>
-					<p class="card-text" th:text="${firstMovie.description}"></p>
 
+	<div class="card-admin mb-4 border-0"
+		style="background-color: transparent; position: absolute; top: 0; left: 0;">
+		<div class="btn-group hover-effect" data-toggle="tooltip"
+			data-placement="top" title="Logout">
+			<a href="logout"> <img th:src="@{/images/icons/logout.svg}"
+				alt="logo" width="75" />
+			</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<h3 class="row_title">Movies</h3>
+		<div class="row_posters" onscroll="getScrollVal()">
+			<div class="wrap" th:each="movie : ${listMovies}">
+				<a th:href="@{/moviesUI/(id=${movie.id})}"> <img
+					th:src="@{/images/poster/{i}(i=${movie.pathToImage})}"
+					alt="movieImage" class="row_poster" />
+				</a>
+				
+				<div class="poster_info">
+					<h4 th:text="${movie.title}"></h4>
+					<p th:text="${movie.description}"></p>
 
 				</div>
 			</div>
-
-
-			<div class="carousel-item" th:each="movie : ${listMovies}">
-				<div class="card">
-					<div class="img-wrapper">
-						<div class="btn-group hover-effect "
-							style="max-width: 100%; max-height: 100%;">
-
-							<a th:href="@{/moviesUI/(id=${movie.id})}"> <img
-								th:src="@{/images/poster/{i}(i=${movie.pathToImage})}"
-								class="d-block w-100" /></a>
-						</div>
-					</div>
-				</div>
-				<div class="card-body">
-					<h5 class="card-title" th:text="${movie.title}"></h5>
-					<p class="card-text" th:text="${movie.description}"></p>
-
-				</div>
+			<div class="space"></div>
+			<div class="left_arrow scroll_button" onclick="scrollL()">
+				<i class="arrow left"></i>
+			</div>
+			<div class="right_arrow scroll_button" onclick="scrollR()">
+				<i class="arrow right"></i>
 			</div>
 		</div>
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#carouselExampleControls" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Next</span>
-		</button>
 	</div>
+
+
 
 
 
@@ -107,41 +242,41 @@
 			$('[data-toggle="tooltip"]').tooltip()
 		})
 	</script>
-	<script type="text/javascript">
-		var multipleCardCarousel = document
-				.querySelector("#carouselExampleControls");
-		if (window.matchMedia("(min-width: 768px)").matches) {
-			var carousel = new bootstrap.Carousel(multipleCardCarousel, {
-				interval : false,
-			});
-			var carouselWidth = $(".carousel-inner")[0].scrollWidth;
-			var cardWidth = $(".carousel-item").width();
-			var scrollPosition = 0;
-			$("#carouselExampleControls .carousel-control-next").on(
-					"click",
-					function() {
-						if (scrollPosition < carouselWidth - cardWidth * 1) {
-							scrollPosition += cardWidth;
-							$("#carouselExampleControls .carousel-inner")
-									.animate({
-										scrollLeft : scrollPosition
-									}, 1000);
-						}
-					});
-			$("#carouselExampleControls .carousel-control-prev").on(
-					"click",
-					function() {
-						if (scrollPosition > 0) {
-							scrollPosition -= cardWidth;
-							$("#carouselExampleControls .carousel-inner")
-									.animate({
-										scrollLeft : scrollPosition
-									}, 1000);
-						}
-					});
-		} else {
-			$(multipleCardCarousel).addClass("slide");
+	<script>
+	
+	function scrollL() {
+		  let x = document.getElementsByClassName("row_posters")[0];
+		  let step = window.outerWidth / 2;
+		  x.scrollLeft -= step;
 		}
+
+		function scrollR() {
+		  let x = document.getElementsByClassName("row_posters")[0];
+		  let step = window.outerWidth / 2;
+		  x.scrollLeft += step;
+		}
+
+		function getScrollVal() {
+		  setTimeout(() => {
+		    let x = document.getElementsByClassName("row_posters")[0];
+		    let el = document.getElementsByClassName("left_arrow")[0];
+		    if (x.scrollLeft == 0) {
+		      el.style.display = "none";
+		    } else {
+		      el.style.display = "flex";
+		    }
+		    let el2 = document.getElementsByClassName("right_arrow")[0];
+		    let right = x.scrollWidth - (x.scrollLeft + x.clientWidth) + 1;
+		    if (right <= 2) {
+		      el2.style.display = "none";
+		    } else {
+		      el2.style.display = "flex";
+		    }
+		  }, 550);
+		}
+
+		getScrollVal();
+
 	</script>
 </body>
 </html>
