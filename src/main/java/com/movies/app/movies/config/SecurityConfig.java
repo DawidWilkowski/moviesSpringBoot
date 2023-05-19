@@ -40,12 +40,15 @@ public class SecurityConfig {
 
 		http.headers().frameOptions().disable();
 
-		http.formLogin()/* .loginPage("/customLogin") */.permitAll().and().logout().logoutUrl("/logout")
-				.logoutSuccessUrl("/index").deleteCookies("remember-me");
+		http.formLogin()/** .loginPage("/customLogin") */
+				.permitAll().and().logout().logoutUrl("/logout").logoutSuccessUrl("/index")
+				.deleteCookies("remember-me");
 
 		return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> {
 			auth.requestMatchers("/index").permitAll();
 			auth.requestMatchers("/customLogin").permitAll();
+			auth.requestMatchers("/movies").permitAll();
+			auth.requestMatchers("/movies/**").permitAll();
 			auth.requestMatchers("/error/**").permitAll();
 			auth.requestMatchers("/login").permitAll();
 			auth.requestMatchers("/login/**").permitAll();
@@ -60,7 +63,9 @@ public class SecurityConfig {
 			auth.requestMatchers("/static/js/**").authenticated();
 			auth.requestMatchers("/webjars/**").authenticated();
 			auth.requestMatchers("/moviesUI").authenticated();
+			auth.requestMatchers("/moviesUI/**").authenticated();
 			auth.requestMatchers("/admin").hasRole("ADMIN");
+			auth.requestMatchers("/newMovie").hasRole("ADMIN");
 		}).httpBasic(Customizer.withDefaults()).build();
 
 	}

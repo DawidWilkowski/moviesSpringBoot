@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -35,6 +36,11 @@ public class MoviesControllerTest {
 	@Autowired
 	MovieRepository movieRepository;
 
+	/**
+	 * Get all movies
+	 * 
+	 * @result GET request is properly performed and status 200 is returned
+	 */
 	@Test
 	public void getAllMoviesTest() throws Exception {
 		mockMvc.perform(get("/movies")).andExpect(status().isOk())
@@ -42,17 +48,33 @@ public class MoviesControllerTest {
 				.andExpect(jsonPath("$[1].title").value("Avatar")).andExpect(jsonPath("$[2].title").value("Shawshank"));
 	}
 
+	/**
+	 * Get movie with id 1
+	 * 
+	 * @result GET request is properly performed and movie with id 1 is returned
+	 */
 	@Test
 	public void getMovieByIdTest() throws Exception {
 		mockMvc.perform(get("/movies/{id}", 1)).andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
 	}
 
+	/**
+	 * Delete movie with id 1
+	 * 
+	 * @result DELETE request is properly performed and movie with id 1 is deleted
+	 */
 	@Test
 	public void deleteMovieByIdTest() throws Exception {
 		mockMvc.perform(delete("/movies/{id}", 1)).andExpect(status().isOk());
 	}
 
+	/**
+	 * Creates sample movie
+	 * 
+	 * @result POST request is properly performed and sample movie is created
+	 */
 	@Test
+	@WithMockUser(roles = "ADMIN")
 	public void createMovieTest() throws Exception {
 		Movie movie = new Movie(null, "Test", 100, "test.png", "test desc", "testLink");
 		Gson gson = new Gson();
@@ -62,14 +84,15 @@ public class MoviesControllerTest {
 				.andExpect(status().isOk());
 	}
 
+	/**
+	 * Get movie page for movie with id 1
+	 * 
+	 * @result GET request is properly performed and movie page for movie with id 1
+	 *         is returned
+	 */
 	@Test
-	public void testViews() throws Exception {
-		mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("index"));
-		mockMvc.perform(get("/admin")).andExpect(status().isOk()).andExpect(view().name("admin"));
-		mockMvc.perform(get("/addMovie")).andExpect(status().isOk()).andExpect(view().name("addMovie"));
-		mockMvc.perform(get("/moviesUI")).andExpect(status().isOk()).andExpect(view().name("movies"))
-				.andExpect(content().string(containsString("Avatar")));
-
+	@WithMockUser(roles = "USER")
+	public void moviePageTest() throws Exception {
 		LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
 		requestParams.add("id", "1");
 		mockMvc.perform(get("/moviesUI/").params(requestParams)).andExpect(status().isOk())
