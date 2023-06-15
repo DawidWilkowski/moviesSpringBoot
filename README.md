@@ -4,8 +4,21 @@
 
 Web application for streaming service.
 
-Deployed: https://movies-spring-boot.fly.dev/
+Deployed: http://netify-389908.lm.r.appspot.com/index
 
+**Hosted on free version of Google Cloud, first start of application may take a while.**
+
+**ADMIN**
+
+user: admin
+
+password: admin
+
+**USER**
+
+user: user
+
+password: user
 ## Description
 
 Application allows users to watch their favourite movies.
