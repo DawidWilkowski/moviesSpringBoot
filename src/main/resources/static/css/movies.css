@@ -1,0 +1,155 @@
+.hover-effect:hover {
+	opacity: 0.5;
+}
+* {
+	margin: 0px;
+}
+
+body {
+
+	color: white;
+	background-color: #0f0f0f;
+}
+
+.row {
+	margin: 10px 60px;
+}
+
+.row_title {
+	font-size: 1.3rem;
+	font-weight: 600;
+}
+
+.row_posters {
+	display: flex;
+	align-items: center;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	min-height: 215px;
+	transition: 500ms;
+	scroll-behavior: smooth;
+}
+
+.row_posters::-webkit-scrollbar {
+	display: none;
+}
+
+.row_poster {
+	object-fit: contain;
+	height: 100%;
+}
+
+.wrap {
+	display: inline-block;
+	position: relative;
+	height: 300px;
+	width: fit-content;
+	margin: 0 1px;
+	cursor: pointer;
+	transition: height 500ms;
+}
+
+.wrap:hover {
+	opacity: 0.8;
+	transition-delay:300ms;
+	height: 400px;
+
+}
+
+.poster_title {
+	position: absolute;
+	left: 20px;
+	bottom: 20px;
+	color: #f0f0f0;
+
+	opacity: 1;
+	transition: opacity 2000ms 1000ms;
+}
+
+.wrap:hover .poster_title {
+	opacity: 0;
+	transition: opacity 100ms;
+	
+}
+
+.poster_info {
+	position: absolute;
+	left: 5px;
+	bottom: 50px;
+	font-weight: 300;
+	font-size: 0.75rem;
+	width: 250px;
+	text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+	opacity: 0;
+	transition: opacity 100ms;
+}
+
+.wrap:hover .poster_info {
+	opacity: 1;
+	transition: opacity 2000ms;
+}
+
+.poster_info p {
+	padding-top: 5px;
+}
+
+.scroll_button {
+	position: absolute;
+	height: 187px;
+	width: 43px;
+	background-color: #0f0f0f4b;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	cursor: pointer;
+}
+
+.right_arrow {
+	right: 60px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateX(20%);
+	transition: all 500ms;
+}
+
+.left_arrow {
+	left: 60px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateX(-20%);
+	transition: all 500ms;
+}
+
+.row_posters:hover .right_arrow {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0%);
+}
+
+.row_posters:hover .left_arrow {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0%);
+}
+
+.space {
+	min-width: 155px;
+	height: 126px;
+}
+
+.arrow {
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	display: inline-block;
+	padding: 3px;
+}
+
+.right {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+
+.left {
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg);
+}

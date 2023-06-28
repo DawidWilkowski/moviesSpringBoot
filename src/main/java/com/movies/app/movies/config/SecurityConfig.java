@@ -45,27 +45,11 @@ public class SecurityConfig {
 				.deleteCookies("remember-me");
 
 		return http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> {
-			auth.requestMatchers("/index").permitAll();
-			auth.requestMatchers("/customLogin").permitAll();
-			auth.requestMatchers("/movies").permitAll();
-			auth.requestMatchers("/movies/**").permitAll();
-			auth.requestMatchers("/error/**").permitAll();
-			auth.requestMatchers("/login").permitAll();
-			auth.requestMatchers("/login/**").permitAll();
-			auth.requestMatchers("/images/**").permitAll();
-			auth.requestMatchers("/images/icons/**").permitAll();
-			auth.requestMatchers("/images/poster/**").permitAll();
-			auth.requestMatchers("/moviesUI/**").authenticated();
-			auth.requestMatchers("/moviesFolder/**").authenticated();
-			auth.requestMatchers("/resources/**").authenticated();
-			auth.requestMatchers("/static/**").authenticated();
-			auth.requestMatchers("/css/**").authenticated();
-			auth.requestMatchers("/static/js/**").authenticated();
-			auth.requestMatchers("/webjars/**").authenticated();
-			auth.requestMatchers("/moviesUI").authenticated();
-			auth.requestMatchers("/moviesUI/**").authenticated();
-			auth.requestMatchers("/admin").hasRole("ADMIN");
-			auth.requestMatchers("/newMovie").hasRole("ADMIN");
+			auth.requestMatchers("/index", "/customLogin", "/movies", "/movies/**", "/error/**", "/login", "/login/**",
+					"/images/**", "/images/icons/**", "/images/poster/**").permitAll();
+			auth.requestMatchers("/moviesUI/**", "/moviesFolder/**", "/resources/**", "/static/**", "/css/**",
+					"/static/js/**", "/webjars/**", "/moviesUI", "/moviesUI/**").authenticated();
+			auth.requestMatchers("/admin", "/newMovie", "/addMovie").hasRole("ADMIN");
 		}).httpBasic(Customizer.withDefaults()).build();
 
 	}
