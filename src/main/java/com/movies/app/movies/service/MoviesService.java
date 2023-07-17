@@ -16,6 +16,6 @@ public interface MoviesService {
 
 	ResponseEntity<String> addNewMovie(Movie movie);
 
-	String addNewMovieFromForm(String title, int length, String descrpition, MultipartFile imageFile,
+	String addNewMovieFromForm(String title, int length, String description, MultipartFile imageFile,
 			MultipartFile movieFile);
 }

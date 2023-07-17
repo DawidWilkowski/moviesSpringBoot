@@ -79,7 +79,6 @@ public class MoviesControllerTest {
 		Movie movie = new Movie(null, "Test", 100, "test.png", "test desc", "testLink");
 		Gson gson = new Gson();
 		String jsonInString = gson.toJson(movie);
-		System.out.println(jsonInString);
 		mockMvc.perform(post("/newMovie").contentType(MediaType.APPLICATION_JSON).content(jsonInString))
 				.andExpect(status().isOk());
 	}

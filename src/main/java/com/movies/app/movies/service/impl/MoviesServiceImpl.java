@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,17 +20,18 @@ import com.movies.app.movies.repository.MovieRepository;
 import com.movies.app.movies.service.MoviesService;
 
 @Service
+@RequiredArgsConstructor // generate constructor with movieRepository field autowired
 public class MoviesServiceImpl implements MoviesService {
 
 	private final String UPLOAD_DIR_IMAGE = "target/classes/static/images/poster/";
 	private final String UPLOAD_DIR_MOVIE = "target/classes/static/moviesFolder/";
 
-	@Autowired
-	private MovieRepository movieRepository;
+
+	private final MovieRepository movieRepository;
 
 	@Override
 	public ResponseEntity<List<Movie>> findAll() {
-		return new ResponseEntity<List<Movie>>(movieRepository.findAll(), HttpStatus.OK);
+		return new ResponseEntity<>(movieRepository.findAll(), HttpStatus.OK);
 	}
 
 	@Override
@@ -41,9 +43,9 @@ public class MoviesServiceImpl implements MoviesService {
 	public ResponseEntity<String> deleteMovieById(Long id) {
 		if (movieRepository.existsById(id)) {
 			movieRepository.deleteById(id);
-			return new ResponseEntity<String>("Succesfully deleted movie", HttpStatus.OK);
+			return new ResponseEntity<>("Successfully deleted movie", HttpStatus.OK);
 		}
-		return new ResponseEntity<String>("No movie with id: " + id, HttpStatus.CONFLICT);
+		return new ResponseEntity<>("No movie with id: " + id, HttpStatus.CONFLICT);
 	}
 
 	@Override
@@ -51,16 +53,18 @@ public class MoviesServiceImpl implements MoviesService {
 		Movie movieFound = movieRepository.findByTitle(movie.getTitle());
 		if (movieFound == null) {
 			movieRepository.save(movie);
-			return new ResponseEntity<String>("Succesfully added new movie", HttpStatus.OK);
+			return new ResponseEntity<>("Successfully added new movie", HttpStatus.OK);
 		} else {
-			return new ResponseEntity<String>("Movie already exist", HttpStatus.CONFLICT);
+			return new ResponseEntity<>("Movie already exist", HttpStatus.CONFLICT);
 
 		}
 	}
 
+
+
 	@Override
-	public String addNewMovieFromForm(String title, int length, String descrpition, MultipartFile imageFile,
-			MultipartFile movieFile) {
+	public String addNewMovieFromForm(String title, int length, String description, MultipartFile imageFile,
+									  MultipartFile movieFile) {
 		Movie movieFound = movieRepository.findByTitle(title);
 		if (movieFound == null) {
 			String imageFileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
@@ -75,7 +79,7 @@ public class MoviesServiceImpl implements MoviesService {
 				Movie movie = new Movie();
 				movie.setTitle(title);
 				movie.setLength(length);
-				movie.setDescription(descrpition);
+				movie.setDescription(description);
 				movie.setPathToImage(imageFileName);
 				movie.setPathToMovie(movieFileName);
 				movieRepository.save(movie);

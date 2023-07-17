@@ -19,9 +19,12 @@ import com.movies.app.movies.service.MoviesService;
 @RestController
 public class MoviesController {
 
-	@Autowired
-	private MoviesService moviesService;
 
+	private final MoviesService moviesService;
+	@Autowired
+	public MoviesController(MoviesService moviesService){
+		this.moviesService = moviesService;
+	}
 	/**
 	 * Returns list of movies from database.
 	 */
@@ -65,9 +68,9 @@ public class MoviesController {
 
 	@PostMapping(value = "/newMovieFromForm")
 	public String addNewMovieFromForm(@RequestParam("title") String title, @RequestParam("length") int length,
-			@RequestParam("description") String descrpition, @RequestParam("image") MultipartFile imageFile,
-			@RequestParam("movie") MultipartFile movieFile) {
-		return moviesService.addNewMovieFromForm(title, length, descrpition, imageFile, movieFile);
+									  @RequestParam("description") String description, @RequestParam("image") MultipartFile imageFile,
+									  @RequestParam("movie") MultipartFile movieFile) {
+		return moviesService.addNewMovieFromForm(title, length, description, imageFile, movieFile);
 	}
 
 }
