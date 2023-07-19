@@ -17,9 +17,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 
 public class MoviesRepositoryTest {
-    @Autowired
-    MovieRepository movieRepository;
 
+    private MovieRepository movieRepository;
+    @Autowired
+    public MoviesRepositoryTest(MovieRepository movieRepository){
+        this.movieRepository = movieRepository;
+    }
 
     @Test
     public void saveCreatedMovieTest(){

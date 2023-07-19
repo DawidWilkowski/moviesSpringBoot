@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import com.movies.app.movies.repository.MoviesRepositoryTest;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,11 @@ public class MoviesControllerTest {
 	@Autowired
 	MockMvc mockMvc;
 
+	private MovieRepository movieRepository;
 	@Autowired
-	MovieRepository movieRepository;
+	public MoviesControllerTest(MovieRepository movieRepository){
+		this.movieRepository = movieRepository;
+	}
 
 	/**
 	 * Get all movies
